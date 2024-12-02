@@ -1,0 +1,88 @@
+
+<div class="container" *ngIf="previsaoDatas">
+    <div class="upper-data">
+        <img src="./assets/sun.jpg" alt="Sol"
+        *ngIf="previsaoDatas.main.temp > 15"
+        >
+        <img src="./assets/cold1.jpg" alt="Frio"
+        *ngIf="previsaoDatas.main.temp <= 15">
+
+        <div class="weather-data">
+            <div class="location">{{previsaoDatas.name}}</div>
+            <div class="temperature">
+                {{previsaoDatas.main.temp | number: "1.0-0"}}°C
+            </div>
+        </div>
+    </div>
+
+    <div class="lower-data">
+        <div class="more-info-label">Mais Informações</div>
+
+        <div class="more-info-container">
+            <div class="info-block">
+                <div class="info-block-label">
+                    <fa-icon size="lg" [icon]="minTemperaturaIcon"></fa-icon>
+                    <span>Mínima</span>
+                </div>
+                <div class="info-block-value">
+                    {{previsaoDatas.main.temp_min | number: "1.0-0"}} °C
+                </div>
+            </div>
+
+            <div class="info-block">
+                <div class="info-block-label">
+                    <fa-icon size="lg" [icon]="maxTemperatureIcon"></fa-icon>
+                    <span>Máxima</span>
+                </div>
+                <div class="info-block-value">
+                    {{previsaoDatas.main.temp_max | number: "1.0-0"}} °C
+                </div>
+        </div>
+
+        <div class="info-block">
+            <div class="info-block-label">
+                <fa-icon size="lg" [icon]="humidityIcon"></fa-icon>
+                <span>Humidade</span>
+            </div>
+            <div class="info-block-value">
+                {{previsaoDatas.main.humidity}} %
+            </div>
+
+
+
+    </div>
+
+    <div class="info-block">
+        <div class="info-block-label">
+            <fa-icon size="lg" [icon]="widIcon"></fa-icon>
+            <span>Vento</span>
+        </div>
+        <div class="info-block-value">
+            {{previsaoDatas.wind.speed}} km/h
+        </div>
+
+</div>
+
+<div class="info-block">
+    <div class="info-block-label">
+        <fa-icon size="lg" [icon]="sunriseIcon"></fa-icon>
+        <span>Nascer do sol</span>
+    </div>
+    <div class="info-block-value">
+        {{ (previsaoDatas.sys.sunrise * 1000) | date:'hh:mm a' }}
+
+
+    </div>
+
+</div>
+
+<div class="info-block">
+    <div class="info-block-label">
+        <fa-icon size="lg" [icon]="sunsetIcon"></fa-icon>
+        <span>Pôr do sol</span>
+    </div>
+    <div class="info-block-value">
+        {{(previsaoDatas.sys.sunset * 1000 - (3 * 60 * 1000)) | date: 'hh:mm a' }}
+    </div>
+
+</div>
